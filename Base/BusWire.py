@@ -1,11 +1,19 @@
-from Base.Input import Input
-from Base.Output import Output
+from Base.Data import Data
 
 
 class BusWire:
-    input: Input = Input
-    output: Output = Output
+
+    input: Data
+    output: Data
+
+    def __init__(self):
+        self.input = self. output = Data()
 
     def set_data(self, data: any):
         self.input.data = data
-        self.output.data = self.input.data
+
+    def get_data(self):
+        return self.output.data
+
+    def set_input(self, input: Data):
+        self.input = self.output = input
