@@ -9,12 +9,10 @@ class BasicRam:
         self.pages = pages
         self.rows = rows
 
-    def store(self, data_word):
-        for i in range(self.pages):
-            for j in range(self.rows):
-                if self.storage[i][j] is None:
-                    self.storage[i][j] = data_word
-                    return (i,j)
+    def store(self, data_word, pos: tuple):
+        if pos[0] <= self.pages and pos[1] <= self.rows:
+            self.storage[pos[0]][pos[1]] = data_word
+            return (pos)
         print("RamOverload")
         return (-1, -1)
 
