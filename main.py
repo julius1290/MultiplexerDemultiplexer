@@ -1,4 +1,5 @@
 from Data.ControlUnit import ControlUnit
+from LogicalElements.AndGate import AndGate
 from Storage.BasicRam import BasicRam
 from Storage.BasicRom import BasicRom
 from Base.BusWire import BusWire
@@ -12,7 +13,16 @@ rom.add_instruction(0, "0001234567890abc")
 rom.add_instruction(1, "0000000000000001")
 rom.add_instruction(2, "0010000000000000")
 
+wirea = BusWire()
+wireb = BusWire()
 
+and_gate = AndGate()
+and_gate.input.append(wirea)
+and_gate.input.append(wireb)
+wirea.set_data(int("1101", 2))
+wireb.set_data(int("1011", 2))
+and_gate.calculate()
+print(and_gate.output.get_data())
 wire6 = BusWire()
 
 ic = InstructionCounter()
