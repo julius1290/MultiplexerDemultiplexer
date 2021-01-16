@@ -1,3 +1,4 @@
+from Data.ControlUnit import ControlUnit
 from Storage.BasicRam import BasicRam
 from Storage.BasicRom import BasicRom
 from Base.BusWire import BusWire
@@ -7,11 +8,9 @@ from Data.InstructionCounter import InstructionCounter
 ram = BasicRam(8, 8)
 rom = BasicRom(10)
 
-rom.add_instruction(0, "111023")
-wire1 = BusWire()
-wire2 = BusWire()
-wire3 = BusWire()
-wire4 = BusWire()
+rom.add_instruction(0, "0001234567890abc")
+rom.add_instruction(1, "0000000000000001")
+rom.add_instruction(2, "0010000000000000")
 
 
 wire6 = BusWire()
@@ -23,4 +22,10 @@ ic.input.set_input(wire6)
 clock.add_notify(ic)
 clock.add_notify(rom)
 rom.input_wire.set_input(ic.output)
+cu = ControlUnit()
+cu.input_wire.set_input(rom.output_wire)
+clock.add_notify(cu)
+ic.data_input.set_input(cu.ic_output)
+ic.op_input.set_input(cu.op_output)
+cu.initOuts()
 clock.run()
