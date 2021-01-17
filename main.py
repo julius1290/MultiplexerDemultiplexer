@@ -1,5 +1,7 @@
 from Data.ControlUnit import ControlUnit
 from LogicalElements.AndGate import AndGate
+from LogicalElements.NotGate import NotGate
+from LogicalElements.OrGate import OrGate
 from Storage.BasicRam import BasicRam
 from Storage.BasicRom import BasicRom
 from Base.BusWire import BusWire
@@ -20,10 +22,21 @@ and_gate = AndGate()
 and_gate.input.append(wirea)
 and_gate.input.append(wireb)
 wirea.set_data(int("1101", 2))
-wireb.set_data(int("1011", 2))
+wireb.set_data(int("1001", 2))
 and_gate.calculate()
 print(and_gate.output.get_data())
 wire6 = BusWire()
+
+or_gate = OrGate()
+or_gate.input.append(wirea)
+or_gate.input.append(wireb)
+or_gate.calculate()
+print(or_gate.output.get_data())
+
+not_gate = NotGate()
+not_gate.input.set_input(wirea)
+not_gate.calculate()
+print(not_gate.output.get_data())
 
 ic = InstructionCounter()
 clock = Clock(1)
