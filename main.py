@@ -65,7 +65,9 @@ print(wire_four.get_data())
 wire_three.set_data("0")
 mux.notify()
 print(wire_four.get_data())
-
+wire_three.set_data("111111111")
+mux.notify()
+print(wire_four.get_data())
 
 
 
