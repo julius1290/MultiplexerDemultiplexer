@@ -5,6 +5,10 @@ class NotGate:
     input: [BusWire] = BusWire()
     output: [BusWire] = BusWire()
 
+    def __init__(self):
+        self.input = BusWire()
+        self.output = BusWire()
+
     # Bitwise and gate for n number of inputs
     def calculate(self):
         ##inputs = list(inputs)
@@ -12,6 +16,10 @@ class NotGate:
         bit_len = 8
         mask = int("11111111", 2)
         ##inputs.pop(0)
-        output = ~self.input.get_data() & mask
+        output = ~int(self.input.get_data(), 2) & mask
         self.output.set_data(bin(output)[2:].zfill(bit_len))
+        ##self.output.set_data(output)
         return bin(output)[2:].zfill(bit_len)
+
+    def notify(self):
+        self.calculate()
