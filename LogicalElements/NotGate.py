@@ -2,8 +2,8 @@ from Base.BusWire import BusWire
 
 
 class NotGate:
-    input: [BusWire] = BusWire()
-    output: [BusWire] = BusWire()
+    input: BusWire
+    output: BusWire
 
     def __init__(self):
         self.input = BusWire()

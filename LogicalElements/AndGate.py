@@ -4,7 +4,7 @@ from Base.BusWire import BusWire
 class AndGate:
 
     input: []
-    output: BusWire()
+    output: BusWire
 
     def __init__(self):
         self.input = []

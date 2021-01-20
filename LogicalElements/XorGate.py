@@ -3,7 +3,7 @@ from Base.BusWire import BusWire
 
 class XorGate:
     input: [BusWire]
-    output: BusWire()
+    output: BusWire
 
     def __init__(self):
         self.input = []
