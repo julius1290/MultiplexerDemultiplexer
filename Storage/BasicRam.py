@@ -15,22 +15,29 @@ class BasicRam:
         self.storage = [[None for x in range(rows)] for y in range(pages)]
         self.pages = pages
         self.rows = rows
+        self.input = BusWire()
+        self.address = BusWire()
+        self.opcode = BusWire()
+        self.output = BusWire()
 
-    def store(self, data_word):
-        for i in range(self.pages):
-            for j in range(self.rows):
-                if self.storage[i][j] is None:
-                    self.storage[i][j] = self.input.get_data()
-                    return (i,j)
+    def store(self):
+        store_address = int(self.address.get_data(), 2)
+        page = store_address//8
+        row = store_address % 8
+        if self.storage[page][row] is None:
+            self.storage[page][row] = self.input.get_data()
+            return (page, row)
         print("RamOverload")
         return (-1, -1)
 
     def read(self, page: int, row: int):
-
         self.output.set_data(self.storage[page][row])
         return self.storage[page][row]
 
-    def delete(self, page: int, row: int):
+    def delete(self):
+        store_address = int(self.address.get_data(), 2)
+        page = store_address // 8
+        row = store_address % 8
         self.storage[page][row] = None
 
     def notifiy(self):
