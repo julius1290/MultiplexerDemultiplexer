@@ -30,7 +30,10 @@ class BasicRam:
         print("RamOverload")
         return (-1, -1)
 
-    def read(self, page: int, row: int):
+    def read(self):
+        store_address = int(self.address.get_data(), 2)
+        page = store_address // 8
+        row = store_address % 8
         self.output.set_data(self.storage[page][row])
         return self.storage[page][row]
 
@@ -40,9 +43,9 @@ class BasicRam:
         row = store_address % 8
         self.storage[page][row] = None
 
-    def notifiy(self):
+    def notify(self):
         op = self.opcode.get_data()
-        if op is "1101":
+        if op == "1101":
             self.store()
-        if op is "1110":
+        if op == "1110":
             self.read()

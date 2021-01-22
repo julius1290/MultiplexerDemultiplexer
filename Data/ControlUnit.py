@@ -15,7 +15,7 @@ class ControlUnit:
             opcode = self.data[:3]
             reg_one = self.data[3:][:2]
             reg_two = self.data[5:][:2]
-            im_bit = self.data[7:][:1]
+            charakter_bit = self.data[7:][:1]
             data_bits = self.data[8:][:8]
             self.set_op_out(opcode)
             self.set_ic_out(data_bits)
