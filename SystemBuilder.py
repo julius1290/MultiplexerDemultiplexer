@@ -65,8 +65,10 @@ class ProcessorSystem:
     adding_ram_demux_out_b_to_ram: BusWire
     adding_to_adding_ldi_ram_driver_in_b: BusWire
     ram_to_adding_ldi_ram_in_c: BusWire
+    counter: int
 
     def __init__(self):
+        self.counter = 0
         self.clock = Clock(1)
         self.instruction_counter = InstructionCounter()
         self.rom = BasicRom(64)
@@ -148,7 +150,7 @@ class ProcessorSystem:
         self.reg_demux_out_a_to_reg_a.set_input(self.reg_demultiplexer.output_a)
         self.register.input_a.set_input(self.reg_demux_out_a_to_reg_a)
 
-        self.reg_demux_out_b_to_reg_b.set_input(self.reg_demultiplexer.output_a)
+        self.reg_demux_out_b_to_reg_b.set_input(self.reg_demultiplexer.output_b)
         self.register.input_b.set_input(self.reg_demux_out_b_to_reg_b)
 
         self.reg_demux_out_c_to_reg_c.set_input(self.reg_demultiplexer.output_c)
@@ -223,3 +225,24 @@ class ProcessorSystem:
 
         self.adding_ldi_ram_to_reg_demux.set_input(self.adding_ldi_ram_to_data_driver.output)
         self.reg_demultiplexer.input.set_input(self.adding_ldi_ram_to_reg_demux)
+
+        self.control_unit.three_wire_driver = self.adding_ldi_ram_to_data_driver
+        self.control_unit.single_wire_driver = self.reg_to_ram_adding_driver
+        self.control_unit.register = self.register
+        self.control_unit.four_wire_demultiplexer = self.reg_demultiplexer
+        self.control_unit.four_wire_multiplexer = self.reg_multiplexer
+        self.control_unit.two_wire_demultiplexer = self.adding_ram_demux
+        self.control_unit.ram = self.ram
+        self.control_unit.console_out = self.console_out
+        self.control_unit.adding_unit = self.adding_unit
+        self.control_unit.clock = self.clock
+
+    def flashcommand(self, command: str):
+        self.rom.add_instruction(self.counter, command)
+        self.counter += 1
+
+    def run(self):
+        self.clock.add_notify(self.instruction_counter)
+        self.clock.add_notify(self.rom)
+        self.clock.add_notify(self.control_unit)
+        self.clock.run()

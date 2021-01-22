@@ -60,8 +60,6 @@ class FourWireMultiplexer:
         ##For and_gate_one
         self.not_gate_one.input.set_input(self.op_a)
         self.not_gate_three.input.set_input(self.op_a)
-        self.and_gate_three.input.append(self.op_a)
-        self.and_gate_four.input.append(self.op_a)
 
         self.not_gate_two.input.set_input(self.op_b)
         self.not_a_one_to_and.set_input(self.not_gate_one.output)
@@ -82,6 +80,7 @@ class FourWireMultiplexer:
         ##For and_gate_three
         self.not_gate_four.input.set_input(self.op_b)
         self.not_c_two_to_and.set_input(self.not_gate_four.output)
+        self.and_gate_three.input.append(self.op_a)
         self.and_gate_three.input.append(self.input_c)
         self.and_gate_three.input.append(self.not_c_two_to_and)
         self.and_three_to_or.set_input(self.and_gate_three.output)
@@ -90,6 +89,8 @@ class FourWireMultiplexer:
         self.and_gate_four.input.append(self.input_d)
         self.and_gate_four.input.append(self.op_b)
         self.and_four_to_or.set_input(self.and_gate_four.output)
+        self.and_gate_four.input.append(self.op_a)
+
 
         ##For or_gate
         self.or_gate.input.append(self.and_one_to_or)

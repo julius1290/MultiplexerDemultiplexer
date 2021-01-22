@@ -45,7 +45,7 @@ class BasicRam:
 
     def notify(self):
         op = self.opcode.get_data()
-        if op == "1101":
+        if op == "10":
             self.store()
-        if op == "1110":
+        if op == "11":
             self.read()
