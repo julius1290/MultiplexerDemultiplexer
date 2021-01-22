@@ -11,6 +11,7 @@ from Base.Clock import Clock
 from Data.InstructionCounter import InstructionCounter
 from Multiplexer.Multiplexer import ToWireMultiplexer
 from Multiplexer.FourWireMultiplexer import FourWireMultiplexer
+from SystemBuilder import ProcessorSystem
 
 ram = BasicRam(8, 8)
 rom = BasicRom(10)
@@ -90,7 +91,9 @@ demux.notify()
 print("Demux_out:")
 print(wire4.get_data())
 
+sysbuilder = ProcessorSystem()
 
+"""
 ic = InstructionCounter()
 clock = Clock(1)
 wire6.set_input(clock.output)
@@ -105,3 +108,4 @@ ic.data_input.set_input(cu.ic_output)
 ic.op_input.set_input(cu.op_output)
 cu.initOuts()
 clock.run()
+"""

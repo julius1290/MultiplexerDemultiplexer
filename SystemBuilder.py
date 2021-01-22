@@ -67,11 +67,11 @@ class ProcessorSystem:
     ram_to_adding_ldi_ram_in_c: BusWire
 
     def __init__(self):
-        self.clock = Clock()
+        self.clock = Clock(1)
         self.instruction_counter = InstructionCounter()
-        self.rom = BasicRom()
+        self.rom = BasicRom(64)
         self.control_unit = ControlUnit()
-        self.ram = BasicRam()
+        self.ram = BasicRam(8, 8)
         self.adding_unit = AddingUnit()
         self.register = Register()
         self.reg_multiplexer = FourWireMultiplexer()
@@ -130,7 +130,7 @@ class ProcessorSystem:
         self.instruction_counter.op_input.set_input(self.cu_to_ic_op)
 
         self.cu_to_ic_data.set_input(self.control_unit.ic_out_data)
-        self.instruction_counter.data_input(self.cu_to_ic_data)
+        self.instruction_counter.data_input.set_input(self.cu_to_ic_data)
 
         #
         self.cu_to_reg_demux_op_a.set_input(self.control_unit.reg_demux_op_a)

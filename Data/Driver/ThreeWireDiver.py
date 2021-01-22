@@ -31,6 +31,10 @@ class ThreeWireDriver:
         self.input_driver_b = BusWire()
         self.input_driver_c = BusWire()
         self.output = BusWire()
+        self.and_gate_one = AndGate()
+        self.and_gate_two = AndGate()
+        self.and_gate_three = AndGate()
+        self.or_gate = OrGate()
 
         self.and_gate_one.input.append(self.input_a)
         self.and_gate_one.input.append(self.input_driver_a)

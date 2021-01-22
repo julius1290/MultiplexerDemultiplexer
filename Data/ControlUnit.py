@@ -4,16 +4,13 @@ from Base.BusWire import BusWire
 class ControlUnit:
 
     input_wire: BusWire
-
     ic_out_op: BusWire
     ic_out_data: BusWire
-
     reg_demux_op_a: BusWire
     reg_demux_op_b: BusWire
     reg_op: BusWire
     reg_mux_op_a: BusWire
     reg_mux_op_b: BusWire
-
     reg_to_adding_driver_out_op: BusWire
     reg_to_adding_ram_demux_out_o: BusWire
     cout_out_op: BusWire
@@ -24,6 +21,8 @@ class ControlUnit:
     adding_ldi_ram_driver_out_op_a: BusWire
     adding_ldi_ram_driver_out_op_b: BusWire
     adding_ldi_ram_driver_out_op_c: BusWire
+
+
 
     data: any
 

@@ -3,4 +3,4 @@ class Data:
     data: any
 
     def __init__(self):
-        self.data = None
+        self.data = "00000000"
