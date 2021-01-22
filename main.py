@@ -2,6 +2,7 @@ from Data.ControlUnit import ControlUnit
 from LogicalElements.AndGate import AndGate
 from LogicalElements.NotGate import NotGate
 from LogicalElements.OrGate import OrGate
+from Multiplexer.TwoWireDemultiplexer import TwoWireDemultiplexer
 from Storage.BasicRam import BasicRam
 from Storage.BasicRom import BasicRom
 from Base.BusWire import BusWire
@@ -70,66 +71,28 @@ wire_three.set_data("111111111")
 mux.notify()
 print(wire_four.get_data())
 
-wire = BusWire()
-wiree = BusWire()
-wireee = BusWire()
-wireeee = BusWire()
-wiree.set_input(wire)
-wireee.set_input(wire)
-wireeee.set_input(wire)
-wire.set_data("e")
-print(wireeee.get_data())
-
-print("mux4test")
 wire1 = BusWire()
 wire2 = BusWire()
 wire3 = BusWire()
 wire4 = BusWire()
-wire5 = BusWire()
-wire6 = BusWire()
-wire7 = BusWire()
 
-mux4 = FourWireMultiplexer()
-mux4.input_a.set_input(wire1)
-mux4.input_b.set_input(wire2)
-mux4.input_c.set_input(wire3)
-mux4.input_d.set_input(wire4)
-mux4.op_a.set_input(wire5)
-mux4.op_b.set_input(wire6)
-wire7.set_input(mux4.output)
+demux = TwoWireDemultiplexer()
+demux.input.set_input(wire1)
+demux.input_op.set_input(wire2)
+wire3.set_input(demux.output_a)
+wire4.set_input(demux.output_b)
 
-wire1.set_data("00000011")
-wire2.set_data("00001100")
-wire3.set_data("00110000")
-wire4.set_data("11000000")
-wire5.set_data("11111111")
-wire6.set_data("00000000")
-mux4.notify()
-print(wire7.get_data())
-wire5.set_data("00000000")
-mux4.notify()
-print(wire7.get_data())
-wire6.set_data("11111111")
-mux4.notify()
-print(wire7.get_data())
-wire5.set_data("11111111")
-mux4.notify()
-print(wire7.get_data())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+wire1.set_data("10101010")
+wire2.set_data("00000000")
+demux.notify()
+print("Demux_out:")
+print(wire3.get_data())
+print(wire4.get_data())
+wire2.set_data("11111111")
+demux.notify()
+print("demux out 2:")
+print(wire3.get_data())
+print(wire4.get_data())
 
 ic = InstructionCounter()
 clock = Clock(1)
