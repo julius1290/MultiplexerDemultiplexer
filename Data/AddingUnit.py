@@ -13,7 +13,7 @@ class AddingUnit:
         self.output = BusWire()
 
     def add(self):
-        result = int(self.input_a.get_data()) + int(self.input_b.get_data())
+        result = int(self.input_a.get_data(), 2) + int(self.input_b.get_data(), 2)
         out = bin(result)[2:].zfill(8)
         self.output.set_data(out)
 

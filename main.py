@@ -137,6 +137,8 @@ sysbuilder.flashcommand("1011100000000000")
 sysbuilder.flashcommand("0010000000111111")
 sysbuilder.flashcommand("0100000010111111")
 sysbuilder.flashcommand("1010000000000000")
+sysbuilder.flashcommand("0101100011111111")
+sysbuilder.flashcommand("0000011000000000")
 sysbuilder.flashcommand("1110000000000000")
 sysbuilder.run()
 """

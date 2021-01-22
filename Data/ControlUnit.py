@@ -294,5 +294,52 @@ class ControlUnit:
         self.four_wire_demultiplexer.notify()
         self.register.notify()
 
+    def register_copy(self):
+        self.resetOuts()
+        self.adding_ldi_ram_driver_out_op_a.set_data("00000000")
+        self.adding_ldi_ram_driver_out_op_b.set_data("11111111")
+        self.adding_ldi_ram_driver_out_op_c.set_data("00000000")
+        self.addi_out_data.set_data("00000000")
+        self.reg_to_adding_driver_out_op.set_data("11111111")
+        choosen_reg_dest = int(self.reg_one, 2)
+        choosen_reg_src = int(self.reg_two, 2)
+        if choosen_reg_src == 0:
+            self.reg_mux_op_a.set_data("00000000")
+            self.reg_mux_op_b.set_data("00000000")
+        if choosen_reg_src == 1:
+            self.reg_mux_op_a.set_data("00000000")
+            self.reg_mux_op_b.set_data("11111111")
+        if choosen_reg_src == 2:
+            self.reg_mux_op_a.set_data("11111111")
+            self.reg_mux_op_b.set_data("00000000")
+        if choosen_reg_src == 3:
+            self.reg_mux_op_a.set_data("11111111")
+            self.reg_mux_op_b.set_data("11111111")
+        if choosen_reg_dest == 0:
+            self.reg_demux_op_a.set_data("11111111")
+            self.reg_demux_op_b.set_data("11111111")
+            self.reg_op.set_data("001")
+        if choosen_reg_dest == 1:
+            self.reg_demux_op_a.set_data("00000000")
+            self.reg_demux_op_b.set_data("11111111")
+            self.reg_op.set_data("010")
+        if choosen_reg_dest == 2:
+            self.reg_demux_op_a.set_data("11111111")
+            self.reg_demux_op_b.set_data("00000000")
+            self.reg_op.set_data("011")
+        if choosen_reg_dest == 3:
+            self.reg_demux_op_a.set_data("00000000")
+            self.reg_demux_op_b.set_data("00000000")
+            self.reg_op.set_data("100")
+        self.reg_to_adding_ram_demux_out_o.set_data("11111111")
+        self.four_wire_multiplexer.notify()
+        self.single_wire_driver.notify()
+        self.two_wire_demultiplexer.notify()
+        self.adding_unit.notify()
+        self.three_wire_driver.notify()
+        self.four_wire_demultiplexer.notify()
+        self.register.notify()
+        print("yeah6")
+
     def exit_programm(self):
         self.clock.stop_programm()
