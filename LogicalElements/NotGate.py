@@ -17,9 +17,9 @@ class NotGate:
         mask = int("11111111", 2)
         ##inputs.pop(0)
         output = ~int(self.input.get_data(), 2) & mask
-        self.output.set_data(bin(output)[2:].zfill(bit_len))
+        self.output.set_data(bin(output)[2:].zfill(8))
         ##self.output.set_data(output)
-        return bin(output)[2:].zfill(bit_len)
+        return bin(output)[2:].zfill(8)
 
     def notify(self):
         self.calculate()

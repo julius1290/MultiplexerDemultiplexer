@@ -18,8 +18,8 @@ class AndGate:
         ##inputs.pop(0)
         for value in self.input:
             output &= int(value.get_data(), 2)
-        self.output.set_data(bin(output)[2:].zfill(bit_len))
-        return bin(output)[2:].zfill(bit_len)
+        self.output.set_data(bin(output)[2:].zfill(8))
+        return bin(output)[2:].zfill(8)
 
     def notify(self):
         self.calculate()
