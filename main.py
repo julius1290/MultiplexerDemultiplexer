@@ -2,6 +2,7 @@ from Data.ControlUnit import ControlUnit
 from LogicalElements.AndGate import AndGate
 from LogicalElements.NotGate import NotGate
 from LogicalElements.OrGate import OrGate
+from Multiplexer.FourWireDemultiplexer import FourWireDemultiplexer
 from Multiplexer.TwoWireDemultiplexer import TwoWireDemultiplexer
 from Storage.BasicRam import BasicRam
 from Storage.BasicRom import BasicRom
@@ -76,23 +77,19 @@ wire2 = BusWire()
 wire3 = BusWire()
 wire4 = BusWire()
 
-demux = TwoWireDemultiplexer()
+demux = FourWireDemultiplexer()
 demux.input.set_input(wire1)
-demux.input_op.set_input(wire2)
-wire3.set_input(demux.output_a)
-wire4.set_input(demux.output_b)
+demux.input_op_one.set_input(wire2)
+demux.input_op_two.set_input(wire3)
+wire4.set_input(demux.output_a)
 
 wire1.set_data("10101010")
-wire2.set_data("00000000")
+wire2.set_data("11111111")
+wire3.set_data("11111111")
 demux.notify()
 print("Demux_out:")
-print(wire3.get_data())
 print(wire4.get_data())
-wire2.set_data("11111111")
-demux.notify()
-print("demux out 2:")
-print(wire3.get_data())
-print(wire4.get_data())
+
 
 ic = InstructionCounter()
 clock = Clock(1)
