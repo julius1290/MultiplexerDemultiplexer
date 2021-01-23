@@ -339,7 +339,6 @@ class ControlUnit:
         self.three_wire_driver.notify()
         self.four_wire_demultiplexer.notify()
         self.register.notify()
-        print("yeah6")
 
     def exit_programm(self):
         self.clock.stop_programm()

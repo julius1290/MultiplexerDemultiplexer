@@ -1,3 +1,4 @@
+from Assembler import Assembler
 from Data.ControlUnit import ControlUnit
 from LogicalElements.AndGate import AndGate
 from LogicalElements.NotGate import NotGate
@@ -126,20 +127,19 @@ print(wire_11.get_data())
 print(wire_12.get_data())
 
 sysbuilder = ProcessorSystem()
-sysbuilder.flashcommand("0100000010010100")
-sysbuilder.flashcommand("0100100010011100")
-sysbuilder.flashcommand("0101000010010111")
-sysbuilder.flashcommand("0101100010010101")
-sysbuilder.flashcommand("0101100000000001")
-sysbuilder.flashcommand("0111100000000001")
-sysbuilder.flashcommand("1001100000111111")
-sysbuilder.flashcommand("1011100000000000")
-sysbuilder.flashcommand("0010000000111111")
-sysbuilder.flashcommand("0100000010111111")
+sysbuilder.flashcommand("0100000011001000")
 sysbuilder.flashcommand("1010000000000000")
-sysbuilder.flashcommand("0101100011111111")
-sysbuilder.flashcommand("0000011000000000")
+sysbuilder.flashcommand("0100000011100101")
+sysbuilder.flashcommand("1010000000000000")
+sysbuilder.flashcommand("0100000011101100")
+sysbuilder.flashcommand("1010000000000000")
+sysbuilder.flashcommand("0100000011101100")
+sysbuilder.flashcommand("1010000000000000")
+sysbuilder.flashcommand("0100000011101111")
+sysbuilder.flashcommand("1010000000000000")
 sysbuilder.flashcommand("1110000000000000")
+assembler = Assembler(sysbuilder)
+assembler.readcommands()
 sysbuilder.run()
 """
 ic = InstructionCounter()
