@@ -38,7 +38,7 @@ class Assembler:
         }
 
     def readcommands(self):
-        print("Please give command, type 'enter' to run programm:")
+        print("Please give command, type 'EXT' to run programm:")
         console_input = input()
         self.input_list = list(console_input.split(','))
         self.op_code = self.get_command(self.input_list[0])
@@ -56,7 +56,6 @@ class Assembler:
         number = self.input_list[2]
         number = bin(int(number))[2:].zfill(8)
         command = self.op_code + register + "000" + number
-        print(command)
         return command
 
     def build_ldi(self):
@@ -71,7 +70,6 @@ class Assembler:
             data = highbit + bin(ord(data))[2:].zfill(7)
             print(data)
         command = self.op_code + register + "000" + data
-        print(command)
         return command
 
     def build_addi(self):
@@ -79,7 +77,6 @@ class Assembler:
         number = self.input_list[2]
         number = bin(int(number))[2:].zfill(8)
         command = self.op_code + register + "000" + number
-        print(command)
         return command
 
     def build_st(self):
@@ -91,20 +88,17 @@ class Assembler:
             self.build_st()
         number = bin(int(number))[2:].zfill(8)
         command = self.op_code + register + "000" + number
-        print(command)
         return command
 
     def build_cout(self):
         register = self.register_dict[self.input_list[1]]
         command = self.op_code + register + "00000000000"
-        print(command)
         return command
 
     def build_cp(self):
         register = self.register_dict[self.input_list[1]]
         register_two = self.register_dict[self.input_list[2]]
         command = self.op_code + register_two + register + "000000000"
-        print(command)
         return command
 
     def build_ext(self):

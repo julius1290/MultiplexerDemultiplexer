@@ -69,7 +69,7 @@ class ProcessorSystem:
 
     def __init__(self):
         self.counter = 0
-        self.clock = Clock(1)
+        self.clock = Clock(10)
         self.instruction_counter = InstructionCounter()
         self.rom = BasicRom(64)
         self.control_unit = ControlUnit()

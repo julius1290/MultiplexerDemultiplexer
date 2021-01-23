@@ -28,5 +28,5 @@ class BasicRom:
 
     def notify(self):
         self.read_instruction()
-        print(self.output_wire.get_data())
+        #print(self.output_wire.get_data())
 
