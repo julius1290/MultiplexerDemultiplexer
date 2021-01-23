@@ -52,7 +52,12 @@ class Assembler:
         return op_code
 
     def build_ld(self):
-        print("1")
+        register = self.register_dict[self.input_list[1]]
+        number = self.input_list[2]
+        number = bin(int(number))[2:].zfill(8)
+        command = self.op_code + register + "000" + number
+        print(command)
+        return command
 
     def build_ldi(self):
         register = self.register_dict[self.input_list[1]]
@@ -96,7 +101,11 @@ class Assembler:
         return command
 
     def build_cp(self):
-        print("1")
+        register = self.register_dict[self.input_list[1]]
+        register_two = self.register_dict[self.input_list[2]]
+        command = self.op_code + register_two + register + "000000000"
+        print(command)
+        return command
 
     def build_ext(self):
         command = self.op_code + "0000000000000"
