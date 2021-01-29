@@ -56,6 +56,3 @@ class ToWireMultiplexer:
 
     def notify(self):
         self.set_data()
-
-
-

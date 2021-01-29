@@ -142,9 +142,6 @@ class ControlUnit:
         if self.opcode == "111":
             self.exit_programm()
 
-    def set_ic_out(self, data: any):
-        self.ic_output.set_data(data)
-
     def load_immidiate(self):
         self.resetOuts()
         self.ldi_out_data.set_data(self.data)
