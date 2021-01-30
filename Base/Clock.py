@@ -14,6 +14,7 @@ class Clock:
         self.output.set_data(0)
         self.stop = 0
 
+
     def run(self):
         self.output.set_data(not self.output.get_data())
         #print(self.output.get_data())
